@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org"
+      class="container">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="/css/style.css" media="all" rel="stylesheet"
+        >
+
+</head>
+<body class="container">
+<div>
+    <h1 align="center">Title of the page</h1>
+    <div class="option" >
+        <ul >
+            <button class="buttons"> <li><a href="/newPost">Post on our blog</a></li></button>
+                <button class="buttons"> <li><a href="/">Home</a></li></button>
+                <li class="signup" sec:authorize="!isAuthenticated()"><button class="buttons"><a th:href="@{/login}">Sign in</a></button></li>
+                <li class="signup" sec:authorize="isAuthenticated()"><button class="buttons"><a th:href="@{/logout}">Logout</a></button></li>
+        </ul>
+    </div>
+
+    <div >
+
+        <div>
+            <ul style="list-style-type:none">
+                <div th:each="post : ${sorted}">
+
+                    <li class="list-group-title"> <span><b th:text="${post.title}"></b></span></li>
+
+                    <li class="content-align">Content <span><b
+                            th:text="${post.body}"></b></span></li>
+                    <div class="group-item-post"><button class="myButton"> <a th:href="@{/post/{id} (id=${post.id})}"> See post</a></button></div>
+                    <div class="group-items">
+                        <li > <span><b th:text="'Created: ' + ${#dates.format(post.createDate, 'dd-MMM-yyyy')}
+            + ' by '"></b><b th:text="${post.user.username}"></b></span></li>
+                        <li class="item-category">Category: <span><b th:text="${post.category}"></b></span></li>
+                    </div>
+                </div>
+                <div class="paging">
+                    <ul>
+                        <li class="nav-item" th:each=" i : ${#numbers.sequence(0,sorted.totalPages-1)}">
+                            <a class="nav-link" th:href="@{/(page=${i})}" th:text="${i}"></a>
+                        </li>
+                    </ul>
+                </div>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>

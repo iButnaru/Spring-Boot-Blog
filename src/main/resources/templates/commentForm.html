@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/"
+      class="container">
+<head>
+    <meta charset="UTF-8">
+    <link href="/css/comment.css" media="all" rel="stylesheet">
+</head>
+<body >
+
+    <form  action="#" th:action="@{/createComment}"
+          th:object="${comment}" method="post">
+
+        <div class="textcomment">
+        <h2 align="center">Write a comment</h2>
+
+        <div>
+            <label th:if="${#fields.hasErrors('body')}" th:errors="*{body}"
+                   class="alert alert-danger"></label>
+            <input type="text" th:field="*{body}" placeholder="Your comment"   cols="15" rows="20">
+        </div>
+
+        <input type="hidden" th:field="*{post}"/>
+        <input type="hidden" th:field="*{user}"/>
+
+        <div class="form-group">
+            <button type="submit" class="button">Comment</button>
+        </div>
+        </div>
+    </form>
+</body>
+</html>

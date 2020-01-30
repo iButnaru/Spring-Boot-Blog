@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html class="container" lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <link href="/css/comment.css" media="all" rel="stylesheet">
+</head>
+<body>
+
+<!--Show this info message only if posted successfully-->
+<div class="alert alert-info" th:if="${successMessage}" th:utext="${successMessage}"></div>
+
+<!--New Post Form-->
+<div class="row" style="margin-top:20px">
+    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+        <form action="#" autocomplete="off" class="form-horizontal"
+              method="post" role="form" th:action="@{/newPost}"
+              th:object="${post}">
+
+            <h2 class="text-center">Write new post</h2>
+
+            <div align="center" class="form-group">
+                <label class="alert alert-danger" th:errors="*{title}"
+                       th:if="${#fields.hasErrors('title')}"></label>
+
+                <textarea class="form-control input-lg" placeholder="Title"
+                          th:field="*{title}"/>
+            </div>
+
+            <div class="form-group">
+                <label class="alert alert-danger" th:errors="*{body}"
+                       th:if="${#fields.hasErrors('body')}"></label>
+
+                <input class="form-control input-lg" placeholder="Content" th:field="*{body}"
+                       type="text"/>
+            </div>
+
+            <div class="button">
+                 <select th:field="*{category}">
+                    <option th:text="'Loose'+ ' weight'" th:value="'Loose weight'"></option>
+                    <option th:text="'My' + ' story'" th:value="'My story'"></option>
+                    <option th:text="'Gain' + ' muscle'" th:value="'Gain muscle'"></option>
+                    <option th:text="Fitness" th:value="'Fitness'"></option>
+                    <option th:text="Equipment" th:value="'Equipment'"></option>
+                    <option th:text="Supliments" th:value="'Supliments'"></option>
+                    <option th:text="'Food '+ 'and ' + 'Diet'" th:value="'Food and Diet'"></option>
+                </select>
+            </div>
+
+            <input th:field="*{user}" type="hidden"/>
+            <input th:field="*{id}" type="hidden"/>
+
+                <input class="button" type="submit" value="Save"/>
+        </form>
+    </div>
+</div>
+</body>
+</html>

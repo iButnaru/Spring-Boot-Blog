@@ -1,0 +1,125 @@
+*{
+margin: 0;
+padding: 0;
+font-family: sans-serif;
+}
+
+.signup{
+top: 40px;
+right: 80px;
+position: absolute;
+text-decoration: none;
+color: #fff;
+border: 2px solid transparent;
+border-radius: 20px;
+
+}
+a:link, a:visited {
+    color: #FFFFFF;
+    text-decoration: none;
+   cursor: pointer;
+}
+
+
+.container {
+    background: linear-gradient(#9796f0, #fbc7d4);
+      margin: auto;
+        width: 80%;
+        padding: 10px;
+        text-indent: 50px;
+  margin-top: 45px;
+  margin-bottom: 45px;
+  margin-right: 200px;
+  margin-left: 120px;
+
+}
+
+ .group-items{
+  margin-right: 150px;
+     font-style: italic;
+    text-align: right;
+    list-style: none;
+  }
+
+    .group-title{
+    list-style: none;
+   color: #1F2608;
+   font-family: 'Trocchi', serif;
+   font-size: 30px; font-weight: normal;
+   text-align: center;
+   margin-top: 25px;}
+
+
+.option ul{
+display: inline-flex;
+margin: 50px;
+}
+
+.option ul li{
+list-style: none;
+margin: 0 20px;
+color: #b2b1b1;
+cursor: pointer;
+
+}
+
+.comments ul{
+ display: flex;
+    flex-direction: row;
+    /* Below sets up your display method: flex-start|flex-end|space-between|space-around */
+    justify-content: flex-start;
+    /* Below removes bullets and cleans white-space */
+    list-style: none;
+    padding: 0;
+    /* Bonus: forces no word-wrap */
+    white-space: nowrap;
+}
+
+.comments ul li{
+ width: 40%;
+ display: inline-flex;
+      height: 100px;
+      padding: 10px;
+      list-style: none;
+}
+
+ .comment-count{
+   list-style: none;
+  margin-left: 150px;
+     font-style: italic;
+    text-align: left;
+
+  }
+  .comment-body{
+  list-style: none;
+  font-style: italic;
+  }
+
+  .bottom-line{
+  display: inline-flex;
+  margin: 50px;
+  }
+
+.inline{
+float: left;}
+.buttons {
+	background-color:#ab9896;
+	border-radius:9px;
+	border:2px solid #ffffff;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Times New Roman;
+	font-size:16px;
+	font-weight:bold;
+	padding:6px 70px;
+	text-decoration:none;
+	text-shadow:-1px 0px 0px #b23e35;
+}
+.buttons:hover {
+	background-color:#eb675e;
+}
+.buttons:active {
+	position:relative;
+	top:1px;
+}

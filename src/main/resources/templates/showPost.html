@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org"
+      class="container">
+<head>
+    <link href="/css/post.css" media="all" rel="stylesheet">
+</head>
+<body >
+    <h1 align="center">Title of the page</h1>
+    <div class="option">
+        <ul class="option">
+           <button class="buttons"> <li><a href="/newPost">Post on our blog</a></li></button>
+            <button class="buttons"><li><a href="/">Home</a></li></button>
+           <button class="buttons"> <li><a href="/register">Create account</a></li></button>
+           <li class="signup" sec:authorize="!isAuthenticated()"> <button class="buttons"><a th:href="@{/login}">Sign in</a></button></li>
+          <li class="signup" sec:authorize="isAuthenticated()"> <button class="buttons"><a th:href="@{/logout}">Logout</a></button></li>
+        </ul>
+    </div>
+
+    <ul>
+        <li class="group-title" th:text="${post.title}">Title</li>
+        <li th:text="${post.body}">Body</li>
+
+        <div class="group-items">
+            <li> <span><b th:text="'Created: ' + ${#dates.format(post.createDate, 'dd-MMM-yyyy')}
+            + ' by '"></b><b th:text="${post.user.username}"></b></span></li>
+            <li class="item-category">Category: <span><b th:text="${post.category}"></b></span></li>
+        </div>
+    </ul>
+<div class="inline">
+        <div><a th:href="@{'/commentPost/{id}'(id=${post.id})}">
+            <button class="buttons" th:text="'Leave ' + 'a ' + 'comment'" type="button"></button></a></div>
+</div>
+    <div class="inline">
+        <!--Only show these buttons if the user is the owner of post-->
+        <div sec:authorize="isAuthenticated()" th:if="${username}">
+            <div>
+                <a class="col-md-2" th:href="@{'/editPost/{id}'(id=${post.id})}">
+                    <button class="buttons" th:text="Edit" type="button">Edit</button>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="inline">
+        <div sec:authorize="isAuthenticated()" th:if="${username}">
+            <form action="#" class="form-horizontal" th:action="@{'/post/{id}'(id=${post.id})}"
+                  th:method="post">
+                <div class="form-group">
+                    <input name="_method" type="hidden" value="delete"/>
+                    <button class="buttons" th:text="Delete" type="submit">Delete</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="inline">
+        <div>
+            <button class="buttons" onclick="myFunction()">See comments <span> <b th:text="'(' + ${count} + ')'"></b></span></button>
+        </div>
+                <div style="display:none" th:id="showhide">
+                <ul class="comments" th:each="comment, commentStat : ${post.comments}">
+              <li class="comment-count">  <span> <b th:text="'Comment: ' + ${commentStat.count}"></b></span></li>
+              <b th:text="${comment.user.username} + ' wrote:'"></b>
+                <li class="comment-body" th:text="${comment.body}"></li>
+            </ul> </div>
+    </div>
+
+
+
+
+    <script>
+    function myFunction() {
+    var x = document.getElementById("showhide");
+    if (x.style.display === "none") {
+    x.style.display = "block";
+    } else {
+    x.style.display = "none";
+    }
+    }
+
+
+
+
+    </script>
+</body>
+</html>
+
+
