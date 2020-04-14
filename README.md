@@ -47,7 +47,7 @@ Has been made in src/main/resources/application.properties. There the connection
  
 Can run this application from the command line but also from Intellij.
  
-Once the application is running acccess http://localhost:8090/.
+Once the application is running acccess http://localhost:8080/.
 In order to see the entire functionality you must create an account and be log in with the previous entered details.
 
 **Actions**
